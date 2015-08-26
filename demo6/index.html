@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Transition Hooks </title>
+<style>
+body{
+  padding-bottom:300px;
+}
+.v-link-active {
+  color: red;
+}
+
+a,b{
+  display:block;
+  margin:5px 0;
+}
+textarea{
+  width: 80%;
+  padding:5px;
+  height:46px;
+}
+
+</style>
+</head>
+<body>
+<a href="../index.html">回首页</a>
+一个router-view 组件在过渡的时候有一些钩子函数可以使用
+<ul>
+  <li>data</li>
+  <li>activate</li>
+  <li>deactivate</li>
+  <li>canActivate</li>
+  <li>canDeactivate</li>
+  <li>canReuse</li>
+</ul>
+你可以实现这些钩子函数在组建的 route 属性下。
+<p>点击下面的链接，查看控制台。</p>
+
+<div id="app">
+  <p>
+    <a v-link="/foo">Go to Foo</a>
+    <a v-link="/bar">Go to Bar</a>
+    <a v-link="/abort">点击中止过渡</a>
+    <a v-link="/redirect">重定向到/foo</a>
+  </p>
+  <router-view></router-view>
+</div>
+
+<pre>
+Transition对象
+每个转换钩子将收到一个过渡对象作为唯一的参数。
+过渡对象公开以下属性和方法
+</pre>
+<ul>
+  <li><b>transition.from</b> 当前router-view 组件</li>
+  <li><b>transition.to</b>要跳转的 touter-view 组件</li>
+  <li><b>transition.next()</b>继续下面的步骤</li>
+  <li><b>transition.abort([reason])</b>中止过渡  源码中这里可以提交个参数，但是并没有用到</li>
+  <li><b>transition.redirect(path)</b> 重定向到其他地方</li>
+</ul>
+
+所有的过渡钩子函数都是异步的，如果想变成同步的，你可以有三种选择
+<ol>
+  <li>显示调用 next abort 或者 redirect  其中之一</li>
+  <li>返回一个 Promise，下面会详细说明</li>
+  <li>在验证阶段 (canActivate and canDeactivate),可以同步的返回一个 布尔值。</li>
+</ol>
+
+<p><b>Returning Promise in Hooks</b></p>
+Promise ... 后面再看了。。。囧
+
+
+  <script src="../lib/vue.js"></script>
+  <script src="../lib/router.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

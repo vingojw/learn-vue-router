@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>data(transition) [-> Promise] </title>
+<style>
+body{
+  padding-bottom:300px;
+}
+.v-link-active {
+  color: red;
+}
+
+a,b{
+  display:block;
+  margin:5px 0;
+}
+textarea{
+  width: 80%;
+  padding:5px;
+  height:46px;
+}
+.view {
+  transition: all .5s ease;
+}
+.test-enter, .test-leave {
+  opacity: 0;
+  transform: translate3d(10px, 0, 0);
+}
+</style>
+</head>
+<body>
+<a href="../index.html">回首页</a>
+
+<p>data(transition) [-> Promise]</p>
+<ul>
+  <li><b>参数 Arguments  【transition {Transition}】</b>
+  调用transition.next(data)，会在组件上遍历设置 data 中的值，比如{a: 1, b: 2},router会调用
+  component.$set('a', 1) 和 component.$set('b', 2)
+  </li>
+  <li><b>返回值 Return Value</b>
+  可以选择返回一个 Promise
+    <ul>
+      <li>  resolve(data) -> transition.next(data)</li>
+      <li>  reject(reason) -> transition.abort(reason)</li>
+    </ul>
+  </li>
+  <li><b>详细信息 Details</b>
+<p>此钩子函数的调用时机是，当activate 钩子函数执行完毕，以及视图切换之前。
+</p>
+<p>
+此时进入的组件会获得一个
+ $loadingRouteData，属性，
+ 当 data 钩子执行完毕，将会把此属性由false变为true，此属性可以用来，显示输入组件的加载状态。
+</p>
+
+<p>data 钩子方法 与 activate 方法的不同</p>
+<ol>
+  <li>
+    <p>每次route的改变都会调用data，即使当前组件被重用。而activate 只会在 组件新创建的时候调用</p>
+    <p>
+      可以想象一下，有一个组件的route设置为 /message/:id ,并且当前路径为 /message/1。
+      当用户访问 /message/2 的时候，当前组件会被重用，所以activate 不会被调用，但是，我们要根据新的ID参数来获取和更新数据，
+      所以大多数情况下，我们使用data来进行数据抓取，而不是activate
+    </p>
+  </li>
+  <li>
+    <p>
+      activate 的主要职责是控制 新组件的切换时间，相比较而言 data调用是在 ，activate 完成后，正确的视图切换发生之前。
+      所以，获取数据，和新组建的切入动画，会并行，
+      并且组件将进入 loading 状态 在 data 全部处理完之前
+    </p>
+    <p>看看关于用户体验的差异</p>
+    <ul>
+      <li>如果我们在显示新组件之前一直等待数据被获取，那么在切换视图的时候用户会觉得卡了有一瞬间</li>
+      <li>相反，我们可以立即响应用户输入，并开始切换视图，而显示新组件与“装载”状态，如果我们有之间的CSS转换，动画时间与数据等待时间很好地重叠</li>
+    </ul><p>顺便说一下，如果您仍然希望等到数据切换视图之前加载，可以在router组件声明的时候在配置中添加waitForData: true</p>
+  </li>
+</ol>
+  </li>
+</ul>
+
+<p>查看以下例子，当点击 Go to Bar的时候，可以看到切换的效果</p>
+<p>但是直接切换有点太单调，加上动画</p>
+<textarea name="" id="" cols="30" rows="10">
+   修改 router-view 为
+     <router-view class="view" v-transition="test" transition-mode="out-in"></router-view>
+
+    在加上style
+    .view {
+      transition: all .5s ease;
+    }
+    .test-enter, .test-leave {
+      opacity: 0;
+      transform: translate3d(10px, 0, 0);
+    }
+    就ok了，简单吧
+</textarea>
+
+
+
+<div id="app">
+  <p>
+    <a v-link="/foo">Go to Foo</a>
+    <a v-link="/bar">Go to Bar loading 2 秒</a>
+  </p>
+  <router-view class="view" v-transition="test" transition-mode="out-in"></router-view>
+</div>
+
+
+  <script src="../lib/vue.js"></script>
+  <script src="../lib/router.js"></script>
+  <script src="data.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>嵌套router</title>
+
+<style>
+	.v-link-active {
+    color: red;
+}
+a{
+  display:block;
+  margin:5px;
+}
+</style>
+</head>
+<body>
+<a href="../index.html">回首页</a>
+<div id="app">
+  <h1>Route Object & Route Matching</h1>
+
+    <a v-link="/user?user=1">Go to /user?query  --> /user?user=1</a>
+    <a v-link="/user/lilei">Go to /user/:username  -->  /user/lilei</a>
+    <a v-link="/user/evan/post/123">Go to /user/:username/post/:post_id  -->  /user/evan/post/123</a>
+    <a v-link="/user/a/b/c">Go to /user/*any  --> /user/a/b/c</a>
+    <a v-link="/foo/a/b/bar">Go to /foo/*any/bar  --> /foo/a/b/bar</a>
+
+  <router-view></router-view>
+</div>
+
+  <script src="../lib/vue.js"></script>
+  <script src="../lib/router.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

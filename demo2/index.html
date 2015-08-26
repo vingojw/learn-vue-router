@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>嵌套router</title>
+
+<style>
+	.v-link-active {
+    color: red;
+}
+</style>
+</head>
+<body>
+<a href="../">回首页</a>
+<div id="app">
+  <h1>Hello App!</h1>
+  <p>
+    <a v-link="/foo">Go to /foo</a>
+    <a v-link="/foo/bar">Go to /foo/bar</a>
+    <a v-link="/foo/baz">Go to /foo/baz</a>
+  </p>
+  <router-view></router-view>
+</div>
+
+
+  <script src="../lib/vue.js"></script>
+  <script src="../lib/router.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

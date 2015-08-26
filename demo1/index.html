@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+<style>
+	.v-link-active {
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<a href="../index.html">回首页</a>
+<div id="app">
+  <h1>Hello App!</h1>
+  <p>
+    <!-- use v-link directive for navigation. -->
+    <a v-link="/foo">Go to Foo</a>
+    <a v-link="/bar">Go to Bar</a>
+  </p>
+  <!-- route outlet -->
+  <router-view></router-view>
+</div>
+	<script src="../lib/vue.js"></script>
+	<script src="../lib/router.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>

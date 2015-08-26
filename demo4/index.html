@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Route Options - 配置</title>
+
+<style>
+body{
+  padding-bottom:300px;
+}
+.v-link-active {
+  color: red;
+}
+
+a,b{
+  display:block;
+  margin:5px 0;
+}
+textarea{
+  width: 80%;
+  padding:5px;
+  height:152px;
+  overflow:none;
+}
+</style>
+</head>
+<body>
+<a href="../index.html">回首页</a><a target="_blank" href="http://vuejs.github.io/vue-router/options.html">Route Options api 地址</a>
+
+<p><b>hashbang：</b>(此demo页面已设置l hashbang:false)</p>
+<ul>
+<li>var router = new VueRouter({hashbang:false})  </li>
+<li>hashbang：设置为false的时候，注意地址栏变化,没有感叹号了</li>
+</ul>
+
+<p><b>history：</b>启用html5 的history模式，但是需要 在服务端设置一些规则 <a href="http://readystate4.com/2012/05/17/nginx-and-apache-rewrite-to-support-html5-pushstate/"> properly configured</a></p>
+<p><b>abstract：</b>开启后 地址栏就不会变了</p>
+
+<p><b>root：</b>只能用在html history模式中 ，不过大多数情况你不用关心它</p>
+<p><b>saveScrollPosition：</b>只能用在html history模式中 ，切换的时候保持滚动条之前的位置，如果失效，可能是因为&lt;router-view&gt; 有过度效果</p>
+
+<p><b>linkActiveClass：</b>链接样式 默认：v-link-active ， v-link-active 类名，如果这个地址匹配那么就加上 v-link-active-exact
+</p>
+<textarea>
+比如有个连接
+   <a v-link="/a">link</a>
+   <a v-link="/a/b">link</a>
+那么点击 /a/b的时候 两个连接都会添加 v-link-active类名
+
+而 /a/b 会添加 v-link-active-exact
+
+可以看最下面的例子
+
+</textarea>
+
+<p><b>transitionOnLoad：</b>
+初始化的时候无论给&lt;router-view&gt;何种过度效果 ，默认的组建会瞬间呈现
+</p>
+
+<p><b>suppressTransitionError：</b>
+如果设置为true，那么过渡效果中的错误就不会提示
+</p>
+
+<div id="app">
+  <h1>Route Object & Route Matching</h1>
+
+<p>使用router.go('/user?user=1')  跳转</p>
+
+    <a v-link="/a">/a</a>
+    <a v-link="/a/b">/a/b</a>
+    <a v-link="/user?user=1/b/c">Go to /user?query  --> /user?user=123</a>
+    <a v-link="/user/lilei">Go to /user/:username  -->  /user/lilei</a>
+    <a v-link="/user/evan/post/123">Go to /user/:username/post/:post_id  -->  /user/evan/post/123</a>
+    <a v-link="/user/a/b/c">Go to /user/*any  --> /user/a/b/c</a>
+    <a v-link="/foo/a/b/bar">Go to /foo/*any/bar  --> /foo/a/b/bar</a>
+
+  <router-view></router-view>
+</div>
+
+  <script src="../lib/vue.js"></script>
+  <script src="../lib/router.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
