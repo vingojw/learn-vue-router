@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>deactivate(transition) [-> Promise]</title>
+<style>
+body{
+  padding-bottom:300px;
+}
+.v-link-active {
+  color: red;
+}
+
+a,b{
+  display:block;
+  margin:5px 0;
+}
+textarea{
+  width: 80%;
+  padding:5px;
+  height:46px;
+}
+.view {
+  transition: all .5s ease;
+}
+.test-enter, .test-leave {
+  opacity: 0;
+  transform: translate3d(10px, 0, 0);
+}
+</style>
+</head>
+<body>
+<a href="../index.html">回首页</a>
+
+<p>deactivate(transition) [-> Promise]</p>
+<p>调用时机在视图它将要被停用，并移除的时候</p>
+
+<ul>
+  <li><b>参数 Arguments transition {Transition}</b>
+和 <a href="./active.html">active</a>一样
+<p>
+调用 transition.next()来解决此钩子函数，注意：这里调用 transition.abort()的话，将不会返回到之前的路径，因为此时过渡已经通过了验证
+</p>
+
+
+  </li>
+  <li><b>返回值 Return Value</b>
+  可以选择返回一个 Promise
+    <ul>
+      <li>  resolve(data) -> transition.next(data)</li>
+      <li>  reject(reason) -> transition.abort(reason)</li>
+    </ul>
+  </li>
+  <li><b>详细信息 Detail</b>
+
+<p>此钩子函数被调用顺序是从下往上的，父视图组件的deactivate钩子函数，只会在其子视图组件的 deactivate调用完毕后执行</p>
+
+<p>新视图组件的 activate 钩子函数，只会在 所有  当前停用的组件的 deactivate钩子执行完毕后调用</p>
+
+  </li>
+</ul>
+
+
+</body>
+</html>

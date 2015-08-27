@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>activate(transition) [-> Promise] </title>
+<style>
+body{
+  padding-bottom:300px;
+}
+.v-link-active {
+  color: red;
+}
+
+a,b{
+  display:block;
+  margin:5px 0;
+}
+textarea{
+  width: 80%;
+  padding:5px;
+  height:46px;
+}
+.view {
+  transition: all .5s ease;
+}
+.test-enter, .test-leave {
+  opacity: 0;
+  transform: translate3d(10px, 0, 0);
+}
+</style>
+</head>
+<body>
+<a href="../index.html">回首页</a>
+
+<p>activate(transition) [-> Promise]</p>
+<p>调用时机在它被创建，而且马上要进行过渡阶段的时候</p>
+
+<ul>
+  <li><b>参数 Arguments transition {Transition}</b>
+  调用 transition.next()来解决此钩子函数，注意：这里调用 transition.abort()的话，将不会返回到之前的路径，因为此时过渡已经通过了验证---但是demo6中点击中止过渡还是回去了，详情<a target="_blank" href="./index.html">Transition Hooks </a>
+
+  </li>
+  <li><b>返回值 Return Value</b>
+  可以选择返回一个 Promise
+    <ul>
+      <li>  resolve(data) -> transition.next(data)</li>
+      <li>  reject(reason) -> transition.abort(reason)</li>
+    </ul>
+  </li>
+  <li><b>详细信息 Detail</b>
+  <p>大多数情况下，此钩子函数用来控制视图切换的时机，因为 此函数如果没执行完，切换是不会开始的。</p>
+  <p>此钩子函数的顺序是从上到下的，子视图组件的activate只会在父视图组件的activate执行完毕之后被调用 </p>
+  </li>
+</ul>
+
+</body>
+</html>

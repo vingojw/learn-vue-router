@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canReuse: Boolean | canReuse(transition) -> Boolean</title>
+<style>
+body{
+  padding-bottom:300px;
+}
+.v-link-active {
+  color: red;
+}
+
+a,b{
+  display:block;
+  margin:5px 0;
+}
+textarea{
+  width: 80%;
+  padding:5px;
+  height:46px;
+}
+.view {
+  transition: all .5s ease;
+}
+.test-enter, .test-leave {
+  opacity: 0;
+  transform: translate3d(10px, 0, 0);
+}
+</style>
+</head>
+<body>
+<a href="../index.html">回首页</a>
+
+<p>canReuse: Boolean | canReuse(transition) -> Boolean</p>
+<p>确定组件是否可以重新使用</p>
+<p>如果一个组件不能被重用，那么当前实例将被一个新的取代，它将进入正常的验证和激活阶段</p>
+<p>
+  此canReuse 可以是一个Boolean 值或者是一个函数，同步的返回 一个 Boolean值，默认为 true
+</p>
+<ul>
+  <li><b>参数 Arguments transition {Transition}</b>
+和 <a href="./active.html">active</a>一样
+<p>
+ 你只能访问 transition.to 和 transition.from 在此钩子函数中。
+</p>
+
+
+  </li>
+  <li><b>返回值 Return Value</b>
+    必须返回一个 Boolean值， 假值会被视为false
+  </li>
+  <li><b>详细信息 Detail</b>
+ <p>
+  canReuse 会被同步调用， 在所有潜在可以重用的组件按照自上而下的顺序。
+ </p>
+ <p>如果一个组件可以被重用，它的 data 钩子函数 会在激活阶段被调用</p>
+  </li>
+</ul>
+
+</body>
+</html>

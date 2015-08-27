@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canActivate(transition) [-> Promise | Boolean]</title>
+<style>
+body{
+  padding-bottom:300px;
+}
+.v-link-active {
+  color: red;
+}
+
+a,b{
+  display:block;
+  margin:5px 0;
+}
+textarea{
+  width: 80%;
+  padding:5px;
+  height:46px;
+}
+.view {
+  transition: all .5s ease;
+}
+.test-enter, .test-leave {
+  opacity: 0;
+  transform: translate3d(10px, 0, 0);
+}
+</style>
+</head>
+<body>
+<a href="../index.html">回首页</a>
+
+<p>deactivate(transition) [-> Promise]</p>
+<p>传入的组件在验证时期，会调用此钩子函数</p>
+
+<ul>
+  <li><b>参数 Arguments transition {Transition}</b>
+和 <a href="./active.html">active</a>一样
+<p>
+调用 transition.next()来解决此钩子函数，这里调用 transition.abort() 的时候，就可以取消过渡了。
+</p>
+
+
+  </li>
+  <li><b>返回值 Return Value</b>
+  可以选择返回一个 Promise
+    <ul>
+      <li>  resolve(true) -> transition.next()</li>
+      <li>  resolve(false) -> transition.abort()</li>
+      <li>  reject(reason) -> transition.abort(reason)</li>
+    </ul>
+    或者 选择 返回一个 Boolean 值
+    <ul>
+      <li>true -> transition.next()</li>
+      <li>false -> transition.abort()</li>
+    </ul>
+  </li>
+  <li><b>详细信息 Detail</b>
+ <p>
+  此钩子函数调用从上到下执行，一个子视图组件的 canActivate 只会在 父视图组件的 canActivate
+   已经调用完毕后调用
+ </p>
+  </li>
+</ul>
+
+
+</body>
+</html>
