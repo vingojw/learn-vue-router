@@ -39,10 +39,10 @@ textarea{
 
 <div id="app">
   <p>
-    <a v-link="/foo">Go to Foo</a>
-    <a v-link="/bar">Go to Bar</a>
-    <a v-link="/abort">点击中止过渡</a>
-    <a v-link="/redirect">重定向到/foo</a>
+    <a v-link="{path:'/foo'}">Go to Foo</a>
+    <a v-link="{path:'/bar'}">Go to Bar</a>
+    <a v-link="{path:'/abort'}">点击中止过渡</a>
+    <a v-link="{path:'/redirect'}">重定向到/foo</a>
   </p>
   <router-view></router-view>
 </div>

@@ -27,7 +27,7 @@ textarea{
 假如我们有一个路由器功能的app，并且设置了 &lt;router-view&gt;的地址是  /a/b/c:
 当从 path: /a/b/c  跳转到 path: /a/d/e
 
-<img src="http://vuejs.github.io/vue-router/pipeline/02.png" style="width:100%;max-width:656px;" alt="">
+<img src="http://vuejs.github.io/vue-router/zh-cn/pipeline/02.png" style="width:100%;max-width:656px;" alt="">
 </p>
 <p>跳转的过程需要作那些事情？</p>
 <ol>
@@ -48,19 +48,19 @@ textarea{
     检查，当前视图中的层次结构的任何部件可以在新的一个被重复使用。
 这是通过比较这两个组件树做，找出共同的组件，然后检查他们的可重用性（通过canReuse选项）。
 默认情况下，每一个组件是可重复使用的，除非另有配置。<br/>
-   <img src="http://vuejs.github.io/vue-router/pipeline/03.png" style="width:100%;max-width:656px;" alt="">
+   <img src="http://vuejs.github.io/vue-router/zh-cn/pipeline/03.png" style="width:100%;max-width:656px;" alt="">
   </li>
   <li>
     <b>Validation phase：（验证阶段）</b>
     检查当前所有可以停用的组建，以及所有可以激活的组建。
     检查依据则是，根据它们的 canDeactivate 和 canActivate 钩子
-    <img src="http://vuejs.github.io/vue-router/pipeline/04.png" style="width:100%;max-width:656px;" alt="">
+    <img src="http://vuejs.github.io/vue-router/zh-cn/pipeline/04.png" style="width:100%;max-width:656px;" alt="">
     <p>注意canDeactivate检查气泡往上，而canActivate检查是自上而下的</p>
     <p>所有这些钩子方法，都可能中止过渡效果，如果在验证阶段过渡被中止，那么路由器保存当前应用程序的状态，并恢复原来的路径</p>
   </li>
   <li><b>Activation phase：（激活阶段）</b>
   一旦所有的验证完成，而且没有中止过渡，那么这个过渡就被认为是有效的。那么路由将会停用当前组建并激活信组件。<p>
-    <img src="http://vuejs.github.io/vue-router/pipeline/05.png" style="width:100%;max-width:656px;" alt=""></p>
+    <img src="http://vuejs.github.io/vue-router/zh-cn/pipeline/05.png" style="width:100%;max-width:656px;" alt=""></p>
    <p> 以上这些钩子执行顺序，与验证顺序相同，但他们的目的是为了让你在组件正式切换前，各个阶段做 清理/准备工作。
    直到所有的 deactivate 和 activate 钩子执行完毕，才会更新界面。
    </p>

@@ -101,8 +101,8 @@ textarea{
 
 <div id="app">
   <p>
-    <a v-link="/foo">Go to Foo</a>
-    <a v-link="/bar">Go to Bar loading 2 秒</a>
+    <a v-link="{path:'/foo'}">Go to Foo</a>
+    <a v-link="{path:'/bar'}">Go to Bar loading 2 秒</a>
   </p>
   <router-view class="view" v-transition="test" transition-mode="out-in"></router-view>
 </div>
