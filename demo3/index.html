@@ -20,6 +20,7 @@ a{
   <h1>Route Object & Route Matching</h1>
 
     <a v-link="{path:'/user?user=1'}">Go to /user?query  --> /user?user=1</a>
+    <a v-link="{name:'user',query:{user:1}}">Go to {path:'/user',query:{user:1}} </a>
     <a v-link="{path:'/user/lilei'}">Go to /user/:username  -->  /user/lilei</a>
     <a v-link="{path:'/user/evan/post/123'}">Go to /user/:username/post/:post_id  -->  /user/evan/post/123</a>
     <a v-link="{path:'/user/a/b/c'}">Go to /user/*any  --> /user/a/b/c</a>

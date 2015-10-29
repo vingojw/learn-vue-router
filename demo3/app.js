@@ -32,6 +32,7 @@ var router = new VueRouter()
 // We'll talk about nested routes later.
 router.map({
     '/user': {
+        name:'user',
         component: {
             template: '<p>query is {{$route.query | json}}</p>'
         }
