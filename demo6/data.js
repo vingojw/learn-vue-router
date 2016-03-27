@@ -1,12 +1,3 @@
-// Define some components
-var Foo = Vue.extend({
-    template: '<p>This is foo!</p>'
-})
-
-var Bar = Vue.extend({
-    template: '<p>This is bar!</p>'
-})
-
 // The router needs a root component to render.
 // For demo purposes, we will just use an empty one
 // because we are using the HTML as the app template.
@@ -48,10 +39,12 @@ var Bar = Vue.extend({
       }
     },
     template:
+      '<div>'+
       '  <div v-if="$loadingRouteData">Loading ...2秒</div>'+
       '  <div v-if="!$loadingRouteData">'+
       '    show message: {{message}}'+
-      '  </div>',
+      '  </div>'+
+      '</div>',
     route:{
       data: function (transition) {
         console.log('在 activate 调用后');
